@@ -85,8 +85,8 @@ namespace Completed
 			//Declare hitPlayer and set it to equal the encountered component.
 			Player hitPlayer = component as Player;
 			
-			//Call the LoseFood function of hitPlayer passing it playerDamage, the amount of foodpoints to be subtracted.
-			hitPlayer.LoseFood (playerDamage);
+			//Call the LoseHealth function of hitPlayer passing it playerDamage, the amount of health points to be subtracted.
+			hitPlayer.LoseHealth (playerDamage);
 			
 			//Set the attack trigger of animator to trigger Enemy attack animation.
 			animator.SetTrigger ("enemyAttack");
