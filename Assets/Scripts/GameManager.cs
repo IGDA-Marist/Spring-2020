@@ -176,16 +176,16 @@ namespace Completed
 			    levelText.text = rooms[Random.Range(0,21)];
             // one adjective
             else if (randomInt < 3)
-                levelText.text = adjectives[Random.Range(0, 49)] + ", " + rooms[Random.Range(0, 21)];
+                levelText.text = adjectives[Random.Range(0, 49)] + " " + rooms[Random.Range(0, 21)];
             // two adjectives
             else if (randomInt < 7)
-                levelText.text = adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + rooms[Random.Range(0, 21)];
+                levelText.text = adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + " " + rooms[Random.Range(0, 21)];
             // three adjectives
             else if (randomInt < 10)
-                levelText.text = adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + rooms[Random.Range(0, 21)];
+                levelText.text = adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + " " + rooms[Random.Range(0, 21)];
             // four adjectives
             else
-                levelText.text = adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + rooms[Random.Range(0, 21)];
+                levelText.text = adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + " " + rooms[Random.Range(0, 21)];
             //Set levelImage to active blocking player's view of the game board during setup.
             levelImage.SetActive(true);
 			
