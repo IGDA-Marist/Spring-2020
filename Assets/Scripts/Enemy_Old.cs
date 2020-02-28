@@ -6,7 +6,7 @@ namespace Completed
 	//Enemy inherits from MovingObject, our base class for objects that can move, Player also inherits from this.
 	public class Enemy : MovingObject
 	{
-		public int playerDamage; 							//The amount of food points to subtract from the player when attacking.
+		public int playerDamage; 							//The amount of HP to subtract from the player when attacking.
 		public AudioClip attackSound1;						//First of two audio clips to play when attacking the player.
 		public AudioClip attackSound2;						//Second of two audio clips to play when attacking the player.
 		
@@ -85,8 +85,8 @@ namespace Completed
 			//Declare hitPlayer and set it to equal the encountered component.
 			Player hitPlayer = component as Player;
 			
-			//Call the LoseFood function of hitPlayer passing it playerDamage, the amount of foodpoints to be subtracted.
-			hitPlayer.LoseFood (playerDamage);
+			//Call the LoseHealth function of hitPlayer passing it playerDamage, the amount of HP to be subtracted.
+			hitPlayer.LoseHealth (playerDamage);
 			
 			//Set the attack trigger of animator to trigger Enemy attack animation.
 			animator.SetTrigger ("enemyAttack");

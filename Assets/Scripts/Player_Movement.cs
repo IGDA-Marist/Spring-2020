@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public float speed;
 
@@ -27,4 +27,3 @@ public class Player : MonoBehaviour
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 }
-
