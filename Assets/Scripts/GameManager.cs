@@ -23,12 +23,95 @@ namespace Completed
 		private List<Enemy> enemies;							//List of all Enemy units, used to issue them move commands.
 		private bool enemiesMoving;								//Boolean to check if enemies are moving.
 		private bool doingSetup = true;							//Boolean to check if we're setting up board, prevent Player from moving during setup.
-		
-		
-		
-		//Awake is always called before any Start functions
-		void Awake()
+        private int randomInt = 0;                              // an int that is set to a random number on startup
+
+        // create an array of names
+        private string[] rooms = new string[22];
+        private string[] adjectives = new string[50];
+
+
+
+
+        //Awake is always called before any Start functions
+        void Awake()
 		{
+            // define all the arrays
+            // define all values in the room array
+            adjectives[0] = "Goddam Soft";
+            adjectives[1] = "Dusty";
+            adjectives[2] = "Bare";
+            adjectives[3] = "Cellar";
+            adjectives[4] = "Colonial";
+            adjectives[5] = "European";
+            adjectives[6] = "Bleak";
+            adjectives[7] = "Smokey";
+            adjectives[8] = "Vengeful";
+            adjectives[9] = "Windowless";
+            adjectives[10] = "Thick-walled";
+            adjectives[11] = "Hot";
+            adjectives[12] = "Noisy";
+            adjectives[13] = "Dark";
+            adjectives[14] = "Cheerful";
+            adjectives[15] = "Punished";
+            adjectives[16] = "Empty";
+            adjectives[17] = "Damp";
+            adjectives[18] = "Moist";
+            adjectives[19] = "Revolting";
+            adjectives[20] = "Common";
+            adjectives[21] = "Ranch";
+            adjectives[22] = "Readied";
+            adjectives[23] = "Uncommon";
+            adjectives[24] = "Theoretical";
+            adjectives[25] = "Infested";
+            adjectives[26] = "Smelly";
+            adjectives[27] = "Memorable";
+            adjectives[28] = "Spicey";
+            adjectives[29] = "Spinning";
+            adjectives[30] = "Cold";
+            adjectives[31] = "Deadly";
+            adjectives[32] = "Dicey";
+            adjectives[33] = "Ancient";
+            adjectives[34] = "Old";
+            adjectives[35] = "Post Modern";
+            adjectives[36] = "Slimey";
+            adjectives[37] = "Crime Ridden";
+            adjectives[38] = "Spooky";
+            adjectives[39] = "Scary";
+            adjectives[40] = "Sleepy";
+            adjectives[41] = "Raunchy";
+            adjectives[42] = "Unencumbered";
+            adjectives[43] = "Comfortable";
+            adjectives[44] = "Unoccupied";
+            adjectives[45] = "Doomed";
+            adjectives[46] = "Glorious";
+            adjectives[47] = "Cursed";
+            adjectives[48] = "Dank";
+            adjectives[49] = "Diry";
+
+            // define all values in the adjectives array
+            rooms[0] = "Attic";
+            rooms[1] = "Ballroom";
+            rooms[2] = "Box Room";
+            rooms[3] = "Cellar";
+            rooms[4] = "Cloakroom";
+            rooms[5] = "Conservatory";
+            rooms[6] = "Dining Room";
+            rooms[7] = "Drawing Room";
+            rooms[8] = "Games Room";
+            rooms[9] = "Hall";
+            rooms[10] = "Landing";
+            rooms[11] = "Larder";
+            rooms[12] = "Library";
+            rooms[13] = "Music Room";
+            rooms[14] = "Office";
+            rooms[15] = "Pantry";
+            rooms[16] = "Parlour";
+            rooms[17] = "Living Room";
+            rooms[18] = "Spare Room";
+            rooms[19] = "Guest Room";
+            rooms[20] = "Toilet";
+            rooms[21] = "Utility Room";
+
             //Check if instance already exists
             if (instance == null)
 
@@ -82,12 +165,29 @@ namespace Completed
 			
 			//Get a reference to our text LevelText's text component by finding it by name and calling GetComponent.
 			levelText = GameObject.Find("LevelText").GetComponent<Text>();
-			
-			//Set the text of levelText to the string "Day" and append the current level number.
-			levelText.text = "Day " + level;
-			
-			//Set levelImage to active blocking player's view of the game board during setup.
-			levelImage.SetActive(true);
+
+            //set the value of the random number
+            randomInt = Random.Range(0, 11);
+            Debug.Log(randomInt);
+
+            //Set the text of levelText to a random name made by getting a string from rooms[] and adding a random number of adjectives.
+            // no adjectives
+            if (randomInt == 0)
+			    levelText.text = rooms[Random.Range(0,21)];
+            // one adjective
+            else if (randomInt < 3)
+                levelText.text = adjectives[Random.Range(0, 49)] + ", " + rooms[Random.Range(0, 21)];
+            // two adjectives
+            else if (randomInt < 7)
+                levelText.text = adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + rooms[Random.Range(0, 21)];
+            // three adjectives
+            else if (randomInt < 10)
+                levelText.text = adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + rooms[Random.Range(0, 21)];
+            // four adjectives
+            else
+                levelText.text = adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + adjectives[Random.Range(0, 49)] + ", " + rooms[Random.Range(0, 21)];
+            //Set levelImage to active blocking player's view of the game board during setup.
+            levelImage.SetActive(true);
 			
 			//Call the HideLevelImage function with a delay in seconds of levelStartDelay.
 			Invoke("HideLevelImage", levelStartDelay);
