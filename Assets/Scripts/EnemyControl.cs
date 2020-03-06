@@ -30,10 +30,12 @@ public class EnemyControl : MonoBehaviour
     	if (target.transform.position.x < transform.position.x)
     	{
     		direction = Vector2.left;
+    		transform.localRotation = Quaternion.Euler(0, 0, 0);	//flip the sprite to face player
     	}//if
     	else
     	{
     		direction = Vector2.right;
+    		transform.localRotation = Quaternion.Euler(0, 180, 0);	//flip the sprite to face player
     	}//else
 
     	//use a raycast to detect the player (and other things)
