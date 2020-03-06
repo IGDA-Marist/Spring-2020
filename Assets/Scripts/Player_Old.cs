@@ -186,6 +186,10 @@ namespace Completed
 				enabled = false;
 			}
 			
+            // <-------------------------------------------------------------------------------------------------->
+            //This is important information
+            // <-------------------------------------------------------------------------------------------------->
+
 			//Check if the tag of the trigger collided with is Food.
 			else if(other.tag == "Food")
 			{

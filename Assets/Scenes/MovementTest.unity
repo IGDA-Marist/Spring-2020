@@ -184,6 +184,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2438073600697972217, guid: 28b53fc28d3a140c392f0e2d919f9de1,
+        type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11446652, guid: 28b53fc28d3a140c392f0e2d919f9de1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 28b53fc28d3a140c392f0e2d919f9de1, type: 3}
@@ -288,4 +293,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa12ecff17f0494992f6d8054ab08b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
