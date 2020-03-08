@@ -6,7 +6,7 @@ public class EnemyControl : MonoBehaviour
 {
 	public int playerDamage; 							//The amount of HP to subtract from the player when attacking.
 	public LayerMask playerMask;						//layermask the player is on
-	//private Animator animator;						/Variable of type Animator to store a reference to the enemy's Animator component.
+	public Animator animator;							//Variable of type Animator to store a reference to the enemy's Animator component.
 	private GameObject target;							//target game object (player)
 	private float distance = 6f;						//distance between enemy and player that causes enemy to chase after player
 	private float speed = 3f;							//Enemy speed
@@ -48,10 +48,15 @@ public class EnemyControl : MonoBehaviour
     		if (hit.collider == target.GetComponent<BoxCollider2D>())
     		{
     			pause = true; //have the enemy pause after contact with player
-    			Debug.Log("This is where the animation will go");
+    			animator.SetBool("attack", true); //start enemy attack animation
     			Debug.Log("This is where the enemy will attack the player and take away player health");
+    			target.GetComponent<Player>().Hit();
     		}//if
    		}//if
+   		else
+   		{
+   			animator.SetBool("attack", false); //end enemy attack animation
+   		}
 
     	//if player is within a certain distance of enemy
         if (Vector2.Distance(transform.position, target.transform.position) <= distance && pause == false)
@@ -72,5 +77,10 @@ public class EnemyControl : MonoBehaviour
         	}//if
         }//else if
     }//Update
+
+    public void Hit()
+    {
+    	animator.SetTrigger("isHit");
+    }
 
 }//Enemy
