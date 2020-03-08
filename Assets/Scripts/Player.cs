@@ -1,12 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public float speed = 10;
+<<<<<<< HEAD
     public LayerMask mask;
     public Animator anim;
+=======
+
+    public int playerHealthPoints = 100;						//Starting value for Player health.
+
+    public Text healthText;						//UI Text to display current player health total.
+
+>>>>>>> e57827f00b1b25617b0de4bdfba1e7de50818dd9
     private Rigidbody2D rb;
     private Vector2 movement;
     private Vector2 direction;
@@ -16,7 +25,16 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+<<<<<<< HEAD
         direction = Vector2.right;
+=======
+
+    
+
+        //Set the healthText to reflect the current player HP total.
+		healthText.text = "HP: " + playerHealthPoints;
+
+>>>>>>> e57827f00b1b25617b0de4bdfba1e7de50818dd9
     }
 
     // Update is called once per frame
@@ -25,6 +43,7 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+<<<<<<< HEAD
         //have player sprite switch according to direction
         if (movement.x > 0)
         {
@@ -37,6 +56,10 @@ public class Player : MonoBehaviour
             transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
     }
+=======
+		}
+    
+>>>>>>> e57827f00b1b25617b0de4bdfba1e7de50818dd9
 
     void FixedUpdate()
     {
@@ -60,5 +83,5 @@ public class Player : MonoBehaviour
     {
         anim.SetTrigger("playerHit");
     }
-}
 
+}
