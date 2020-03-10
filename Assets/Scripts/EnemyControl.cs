@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyControl : MonoBehaviour
 {
 	public int playerDamage; 							//The amount of HP to subtract from the player when attacking.
+	public int enemyHealth;								//Enemy health, can be adjusted for each enemy in inspecter
 	public LayerMask playerMask;						//layermask the player is on
 	public Animator animator;							//Variable of type Animator to store a reference to the enemy's Animator component.
 	private GameObject target;							//target game object (player)
@@ -45,19 +46,14 @@ public class EnemyControl : MonoBehaviour
     	if (hit.collider != null)
    		{
 			//If the player is detected
-    		if (hit.collider == target.GetComponent<BoxCollider2D>())
+    		if (hit.collider == target.GetComponent<BoxCollider2D>() && pause == false)
     		{
+    			animator.SetTrigger("attack");
+    			target.GetComponent<Player>().Hit(playerDamage);
+
     			pause = true; //have the enemy pause after contact with player
-    			animator.SetBool("attack", true); //start enemy attack animation
-    			Debug.Log("This is where the enemy will attack the player and take away player health");
-    			target.GetComponent<Player>().Hit();
     		}//if
    		}//if
-   		else
-   		{
-   			animator.SetBool("attack", false); //end enemy attack animation
-   		}
-
     	//if player is within a certain distance of enemy
         if (Vector2.Distance(transform.position, target.transform.position) <= distance && pause == false)
         {
@@ -78,9 +74,17 @@ public class EnemyControl : MonoBehaviour
         }//else if
     }//Update
 
-    public void Hit()
+    public void EnemyHit(int damage)
     {
-    	animator.SetTrigger("isHit");
+    	animator.Play("Enemy1Hit", 0, 0);
+    	enemyHealth -= damage;
+
+    	//destroy enemy when health is 0
+    	if (enemyHealth <= 0)
+    	{
+    		animator.Play("Enemy1Death", 0, 0);
+    		Destroy(gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+    	}
     }
 
 }//Enemy
