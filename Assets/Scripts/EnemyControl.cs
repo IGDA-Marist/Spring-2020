@@ -8,9 +8,10 @@ public class EnemyControl : MonoBehaviour
 	public int enemyHealth;								//Enemy health, can be adjusted for each enemy in inspecter
 	public LayerMask playerMask;						//layermask the player is on
 	public Animator animator;							//Variable of type Animator to store a reference to the enemy's Animator component.
+	public int enemyType;								//get the type of enemy
 	private GameObject target;							//target game object (player)
 	private float distance = 6f;						//distance between enemy and player that causes enemy to chase after player
-	private float speed = 3f;							//Enemy speed
+	public float speed;							        //Enemy speed (different for each version)
 	private bool pause = false;							//whether or not the enemy will pause
 	private float timer = 1f;							//timer for how long the enemy pauses
 	private Vector2 direction;							//direction enemy is facing
@@ -76,13 +77,29 @@ public class EnemyControl : MonoBehaviour
 
     public void EnemyHit(int damage)
     {
-    	animator.Play("Enemy1Hit", 0, 0);
+    	if (enemyType == 0)
+    	{
+    		animator.Play("Enemy1Hit", 0, 0);
+    	}
+    	else if (enemyType == 1)
+    	{
+    		animator.Play("Enemy2Hit", 0, 0);
+    	}
+    	
     	enemyHealth -= damage;
 
     	//destroy enemy when health is 0
     	if (enemyHealth <= 0)
     	{
-    		animator.Play("Enemy1Death", 0, 0);
+    		if (enemyType == 0)
+    		{
+    			animator.Play("Enemy1Death", 0, 0);
+    		}
+    		else if (enemyType == 1)
+    		{
+    			animator.Play("Enemy2Death", 0, 0);
+    		}
+    		
     		Destroy(gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
     	}
     }
